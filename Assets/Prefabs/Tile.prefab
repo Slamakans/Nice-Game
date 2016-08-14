@@ -53,7 +53,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.5, y: 0.5}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
 --- !u!114 &114000012892617322
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d26dc313a294364696071d51b66d411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tilesheet: {fileID: 2800000, guid: 4c925e53f7f80ad47b672c1c31d348d0, type: 3}
+  Tilesheet: {fileID: 2800000, guid: e17c56857734cef40bda7d30a99697e2, type: 3}
   TileSize: 64
 --- !u!212 &212000013256439860
 SpriteRenderer:

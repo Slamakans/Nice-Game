@@ -7,12 +7,16 @@ public class TilePlacingScript : MonoBehaviour {
 
 	private int currentId = 0;
 
+	public void SetTileId(int id)
+	{
+		currentId = id;
+	}
+
 	void Update () {
-			Vector3 mousePos = Input.mousePosition;
-			Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-		Debug.Log(Tile.GetTileAt(worldPos));
-		if(Input.GetButton("Fire1"))
+		Vector3 mousePos = Input.mousePosition;
+		if(mousePos.x > 262 && Input.GetButton("Fire1"))
 		{
+			Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
 			if(Tile.GetTileAt(worldPos) == null)
 			{
 				Tile.CreateTile(TilePrefab, worldPos, currentId);
@@ -26,11 +30,14 @@ public class TilePlacingScript : MonoBehaviour {
 
 	void LateUpdate()
 	{
-		Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		var start = Tile.ConvertToTilePos(pos);
-		Debug.DrawRay(start, Vector2.right);
-		Debug.DrawRay(start, Vector2.up);
-		Debug.DrawRay(start + Vector2.right, Vector2.up);
-		Debug.DrawRay(start + Vector2.up, Vector2.right);
+		if(Input.mousePosition.x > 262)
+		{
+			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			var start = Tile.ConvertToTilePos(pos);
+			Debug.DrawRay(start, Vector2.right);
+			Debug.DrawRay(start, Vector2.up);
+			Debug.DrawRay(start + Vector2.right, Vector2.up);
+			Debug.DrawRay(start + Vector2.up, Vector2.right);
+		}
 	}
 }
