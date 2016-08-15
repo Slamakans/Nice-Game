@@ -1,38 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 
 public class TilePlacingScript : MonoBehaviour {
 	public Transform TilePrefab;
 
+	public Rect mapRect;
+
 	private int currentId = 0;
+
+	void OnDrawGizmosSelected()
+	{
+		Gizmos.DrawLine(mapRect.position, mapRect.position + new Vector2(mapRect.width, 0));
+		Gizmos.DrawLine(mapRect.position, mapRect.position + new Vector2(0, mapRect.height));
+		Gizmos.DrawLine(mapRect.position + new Vector2(mapRect.width, 0), mapRect.position + new Vector2(mapRect.width, mapRect.height));
+		Gizmos.DrawLine(mapRect.position + new Vector2(0, mapRect.height), mapRect.position + new Vector2(mapRect.width, mapRect.height));
+	}
 
 	public void SetTileId(int id)
 	{
 		currentId = id;
 	}
-
+	
 	void Update () {
+
+
+		mapRect.position = Camera.main.transform.position - new Vector3(mapRect.size.x-4.5f, mapRect.size.y)/2;
 		Vector3 mousePos = Input.mousePosition;
-		if(mousePos.x > 262 && Input.GetButton("Fire1"))
+		Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+		if(mapRect.Contains(worldPos))
 		{
-			Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-			if(Tile.GetTileAt(worldPos) == null)
+			if(Input.GetButton("Fire1"))
 			{
-				Tile.CreateTile(TilePrefab, worldPos, currentId);
-			}
-			else
-			{
-				Tile.GetTileAt(worldPos).SetId(currentId);
+				var tile = Tile.GetTileAt(worldPos);
+				if(tile == null)
+				{
+					Tile.CreateTile(TilePrefab, worldPos, currentId);
+				}
+				else
+				{
+					tile.SetId(currentId);
+				}
 			}
 		}
 	}
 
 	void LateUpdate()
 	{
-		if(Input.mousePosition.x > 262)
+		Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		if(mapRect.Contains(pos))
 		{
-			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			var start = Tile.ConvertToTilePos(pos);
 			Debug.DrawRay(start, Vector2.right);
 			Debug.DrawRay(start, Vector2.up);

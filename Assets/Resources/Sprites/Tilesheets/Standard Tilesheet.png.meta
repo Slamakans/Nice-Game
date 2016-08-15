@@ -1,11 +1,14 @@
 fileFormatVersion: 2
 guid: e17c56857734cef40bda7d30a99697e2
-timeCreated: 1471207178
+timeCreated: 1471283480
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: tileset_0
     21300002: tileset_1
+    21300004: Standard Tilesheet_0
+    21300006: Standard Tilesheet_1
+    21300008: Standard Tilesheet_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,7 +58,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tileset_0
+      name: Standard Tilesheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -68,10 +71,23 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset_1
+      name: Standard Tilesheet_1
       rect:
         serializedVersion: 2
         x: 64
+        y: 576
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Standard Tilesheet_2
+      rect:
+        serializedVersion: 2
+        x: 128
         y: 576
         width: 64
         height: 64
